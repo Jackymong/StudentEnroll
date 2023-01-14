@@ -1,6 +1,7 @@
 from django.shortcuts import render, HttpResponseRedirect
 from .forms import StudentRegistration
 from .models import User
+from django.contrib import messages
 # Create your views here.
 
 #This function do for Add and show
@@ -13,6 +14,7 @@ def add_show(request):
             ps = form.cleaned_data['password']
             reg = User(name=nm, email=em, password=ps)
             form.save()
+            messages.success(request, 'Student add successfully')
             form = StudentRegistration()
     else:
         form = StudentRegistration()
